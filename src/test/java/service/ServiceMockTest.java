@@ -1,6 +1,7 @@
 package service;
 
 import domain.Homework;
+import domain.Student;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
@@ -41,6 +42,19 @@ public class ServiceMockTest {
     public void deleteHomework() {
         when(homeworkXMLRepository.delete("100")).thenReturn(null);
         assertNotEquals(1, service.deleteHomework("100"));
+    }
+
+    @Test
+    public void saveStudent() {
+        Student student = new Student("2", "Kiki", 533);
+        when(studentXMLRepository.save(student)).thenReturn(null);
+        assertEquals(1, service.saveStudent("2", "Kiki", 533), "ok");
+    }
+
+    @Test
+    public void deleteStudent() {
+        when(studentXMLRepository.delete("100")).thenReturn(null);
+        assertNotEquals(1, service.deleteStudent("100"));
     }
 
     @Test
